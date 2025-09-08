@@ -1,8 +1,8 @@
 import argparse
-from scripts.train import train_model
-from scripts.infer_image import run_inference_image
-from scripts.infer_video import run_inference_video
-from scripts.real_time import run_inference_realtime  
+from train import train_model
+from infer_image import run_inference_image
+from infer_video import run_inference_video
+from real_time import run_inference_realtime  
 
 def main():
     parser = argparse.ArgumentParser(description="YOLO Componentes Eletrônicos")

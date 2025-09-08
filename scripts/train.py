@@ -15,5 +15,5 @@ def train_model(data="datasets/components.yaml",
         epochs=epochs,
         imgsz=imgsz,
         batch=batch,
-        device=device
+        device="cpu" 
     )
