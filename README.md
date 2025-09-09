@@ -1,4 +1,3 @@
-```markdown
 # YOLO - Detecção de Componentes Eletrônicos
 
 Este projeto implementa uma **YOLOv8** para detectar e contar **resistores, capacitores e transistores** em imagens, vídeos ou em tempo real via câmera.
@@ -10,26 +9,40 @@ Este projeto implementa uma **YOLOv8** para detectar e contar **resistores, capa
 ```
 
 YOLO-Components/
-│── datasets/                # Datasets no formato YOLO
-│   └── components/          # Ex: resistor, capacitor, transistor
 │
-│── scripts/                 # Scripts do projeto
-│   ├── train.py             # Script de treinamento
-│   ├── infer\_image.py       # Inferência em imagem
-│   ├── infer\_video.py       # Inferência em vídeo
-│   ├── infer\_count.py       # Inferência com contagem em tempo real
+├── datasets/
+│   └── components/
+│       ├── images/
+│       │   ├── train/
+│       │   ├── val/
+│       │   └── test/
+│       │
+│       ├── labels/
+│       │   ├── train/
+│       │   ├── val/
+│       │   └── test/
+│       │
+│       └── components.yaml
+├── scripts/
+├── runs/
+│   └── detect/
+│       └── train/  
+│   ├── train.py
+│   ├── infer_image.py
+│   ├── infer_video.py
+│   └── real_time.py      # Renomeado ou pode ser o infer_count.py
+│   └── main.py
 │
-│── runs/                    # Resultados de treinamentos
-│
-│── main.py                  # Script principal com argparse
-│── requirements.txt         # Dependências do projeto
-│── README.md                # Este arquivo
+├── requirements.txt
+├── .gitignore
+├── LICENSE
+└── README.md
 
 ````
 
 ---
 
-## ⚙️ Configuração do Ambiente
+##  Configuração do Ambiente
 
 1. Clone este repositório:
 
@@ -48,7 +61,7 @@ source .venv/bin/activate   # Linux/Mac
 pip install -r requirements.txt
 ```
 
-### 📦 Dependências principais
+### Dependências principais
 
 * `ultralytics` (YOLOv8)
 * `opencv-python`
@@ -56,7 +69,7 @@ pip install -r requirements.txt
 
 ---
 
-## 📊 Dataset
+## Dataset
 
 Você pode usar datasets públicos de componentes eletrônicos (Roboflow, Kaggle, MDPI, etc.) ou montar o seu próprio.
 
@@ -90,7 +103,7 @@ names:
 
 ---
 
-## 🚀 Como Usar
+## Como Usar
 
 ### 1. Treinamento
 
@@ -117,24 +130,7 @@ python main.py --mode realtime --source 0 --weights runs/detect/train/weights/be
 ```
 
 > `--source 0` = câmera padrão.
-> Pode ser substituído pelo caminho de um vídeo ou endereço de câmera IP.
+> Pode ser substituído pelo caminho de um vídeo ou endereço de câmera IP. Foi usado o IP WEBCAM disponível para Android.
 
 ---
 
-## 📌 Observações
-
-* Pressione **Q** para sair do modo vídeo/câmera.
-* A contagem é exibida tanto na tela quanto no terminal (dependendo do script).
-* Os resultados dos treinamentos ficam na pasta `runs/`.
-
----
-
-✍️ **Autor:** [@Frymtz](https://github.com/Frymtz)
-📅 **Projeto iniciado em 2025**
-
-```
-
-Esse formato já está **otimizado para GitHub**, com blocos de código bem definidos, emojis para navegação mais intuitiva e correções nos trechos que estavam desalinhados.  
-
-Quer que eu também adicione **prints de exemplo das inferências** (imagens/vídeos processados) no README para ficar mais atrativo?
-```
