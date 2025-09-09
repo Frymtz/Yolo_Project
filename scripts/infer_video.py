@@ -9,13 +9,16 @@ def run_inference_video(source=0,
                         conf=0.35,
                         iou=0.5):
     """
-    Faz inferência em vídeo/webcam com contagem por frame.
+    Runs inference on video/webcam with per-frame counting.
     """
     model = YOLO(weights_path)
     cap = cv2.VideoCapture(source)
 
     if not cap.isOpened():
-        raise RuntimeError(f"Não foi possível abrir a fonte: {source}")
+        raise RuntimeError(f"Could not open source: {source}")
+
+    cv2.namedWindow("YOLO - Video", cv2.WND_PROP_FULLSCREEN)
+    cv2.setWindowProperty("YOLO - Video", cv2.WND_PROP_FULLSCREEN, cv2.WINDOW_FULLSCREEN)
 
     t0 = time.time()
     frames = 0
@@ -36,14 +39,21 @@ def run_inference_video(source=0,
         fps = frames / (time.time() - t0 + 1e-6)
 
         cv2.putText(annotated,
-                    f"Resistores: {counts['resistor']} | Capacitores: {counts['capacitor']} | Transistores: {counts['transistor']} | FPS: {fps:.1f}",
+                    f"Resistors: {counts['resistor']} | Capacitors: {counts['capacitor']}",
                     (10, 30),
                     cv2.FONT_HERSHEY_SIMPLEX,
-                    0.7,
+                    0.5,
+                    (255, 255, 255),
+                    2)
+        cv2.putText(annotated,
+                    f"Transistors: {counts['transistor']} | FPS: {fps:.1f}",
+                    (10, 55),
+                    cv2.FONT_HERSHEY_SIMPLEX,
+                    0.5,
                     (255, 255, 255),
                     2)
 
-        cv2.imshow("YOLO - Vídeo", annotated)
+        cv2.imshow("YOLO - Video", annotated)
         if cv2.waitKey(1) & 0xFF == 27:  # ESC
             break
 

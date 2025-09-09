@@ -7,7 +7,7 @@ def train_model(data="datasets/components.yaml",
                 batch=16,
                 device=0):
     """
-    Treina um modelo YOLO com os parâmetros fornecidos.
+    Trains a YOLO model with the provided parameters.
     """
     yolo = YOLO(model)
     yolo.train(
@@ -15,5 +15,5 @@ def train_model(data="datasets/components.yaml",
         epochs=epochs,
         imgsz=imgsz,
         batch=batch,
-        device="cpu" 
+        device="cuda"
     )

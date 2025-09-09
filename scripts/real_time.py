@@ -8,31 +8,31 @@ def run_inference_realtime(source=0,
                            weights_path="runs/detect/train/weights/best.pt",
                            conf=0.35,
                            iou=0.5,
-                           intervalo=4):
+                           interval=4):
     """
-    Inferência em tempo real de câmera (USB, IP, etc.)
-    Mostra bounding boxes + contagem de cada classe no frame.
+    Real-time inference from camera (USB, IP, etc.)
+    Shows bounding boxes + count of each class in the frame.
     """
     model = YOLO(weights_path)
     cap = cv2.VideoCapture(source)
 
     if not cap.isOpened():
-        raise RuntimeError(f"Não foi possível abrir a fonte: {source}")
+        raise RuntimeError(f"Could not open source: {source}")
 
-    frame_atual = 0
+    current_frame = 0
 
     while cap.isOpened():
         ret, frame = cap.read()
         if not ret:
             break
 
-        if frame_atual % intervalo != 0:
-            frame_atual += 1
+        if current_frame % interval != 0:
+            current_frame += 1
             continue
 
         results = model(frame, conf=conf, iou=iou, verbose=False)
 
-        # Contagem das classes no frame atual
+        # Count classes in the current frame
         counts = Counter()
         for result in results:
             boxes = result.boxes
@@ -40,12 +40,12 @@ def run_inference_realtime(source=0,
                 cls_name = CLASS_NAMES[int(cls)]
                 counts[cls_name] += 1
 
-        frame_atual += 1
+        current_frame += 1
 
-        # Frame anotado com bounding boxes
+        # Frame annotated with bounding boxes
         annotated_frame = results[0].plot()
 
-        # Escrever a contagem no canto superior esquerdo
+        # Write the count in the top left corner
         y_offset = 30
         for comp, qtd in counts.items():
             cv2.putText(
@@ -59,7 +59,7 @@ def run_inference_realtime(source=0,
             )
             y_offset += 30
 
-        cv2.imshow("Detecção em tempo real", annotated_frame)
+        cv2.imshow("Real-time Detection", annotated_frame)
 
         if cv2.waitKey(1) & 0xFF == ord('q'):
             break

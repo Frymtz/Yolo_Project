@@ -8,6 +8,7 @@ Este projeto implementa uma **YOLOv8** para detectar e contar **resistores, capa
 ## Estrutura de Pastas
 
 ```
+
 YOLO-Components/
 │── datasets/                # Datasets no formato YOLO
 │   └── components/          # Ex: resistor, capacitor, transistor
@@ -16,7 +17,7 @@ YOLO-Components/
 │   ├── train.py             # Script de treinamento
 │   ├── infer\_image.py       # Inferência em imagem
 │   ├── infer\_video.py       # Inferência em vídeo
-│   ├── infer\_count.py       # Inferência com real 
+│   ├── infer\_count.py       # Inferência com contagem em tempo real
 │
 │── runs/                    # Resultados de treinamentos
 │
@@ -28,16 +29,16 @@ YOLO-Components/
 
 ---
 
-## Configuração do Ambiente
+## ⚙️ Configuração do Ambiente
 
 1. Clone este repositório:
 
 ```bash
 git clone https://github.com/Frymtz/Yolo_Project.git
-cd yolo-components
+cd YOLO-Components
 ````
 
-2. Crie o ambiente virtual e instale dependências:
+2. Crie o ambiente virtual e instale as dependências:
 
 ```bash
 python -m venv .venv
@@ -47,7 +48,7 @@ source .venv/bin/activate   # Linux/Mac
 pip install -r requirements.txt
 ```
 
-### Dependências principais
+### 📦 Dependências principais
 
 * `ultralytics` (YOLOv8)
 * `opencv-python`
@@ -55,7 +56,7 @@ pip install -r requirements.txt
 
 ---
 
-## Dataset
+## 📊 Dataset
 
 Você pode usar datasets públicos de componentes eletrônicos (Roboflow, Kaggle, MDPI, etc.) ou montar o seu próprio.
 
@@ -89,7 +90,7 @@ names:
 
 ---
 
-## Como Usar
+## 🚀 Como Usar
 
 ### 1. Treinamento
 
@@ -109,8 +110,7 @@ python main.py --mode image --source data/teste.jpg --weights runs/detect/train/
 python main.py --mode video --source data/video.mp4 --weights runs/detect/train/weights/best.pt
 ```
 
-
-### 5. Inferência em Tempo Real (Câmera)
+### 4. Inferência em Tempo Real (Câmera)
 
 ```bash
 python main.py --mode realtime --source 0 --weights runs/detect/train/weights/best.pt
@@ -121,8 +121,20 @@ python main.py --mode realtime --source 0 --weights runs/detect/train/weights/be
 
 ---
 
-##  Observações
+## 📌 Observações
 
 * Pressione **Q** para sair do modo vídeo/câmera.
 * A contagem é exibida tanto na tela quanto no terminal (dependendo do script).
+* Os resultados dos treinamentos ficam na pasta `runs/`.
+
 ---
+
+✍️ **Autor:** [@Frymtz](https://github.com/Frymtz)
+📅 **Projeto iniciado em 2025**
+
+```
+
+Esse formato já está **otimizado para GitHub**, com blocos de código bem definidos, emojis para navegação mais intuitiva e correções nos trechos que estavam desalinhados.  
+
+Quer que eu também adicione **prints de exemplo das inferências** (imagens/vídeos processados) no README para ficar mais atrativo?
+```
